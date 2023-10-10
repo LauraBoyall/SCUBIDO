@@ -1,3 +1,3 @@
-# Simulating Climate Using Bayesian Inference - SCUBI
+# Simulating Climate Using Bayesian Inference with proxy Data Observations - SCUBIDO
 
-SCUBI is a R package designed to perform Bayesain inference on multivariate proxy data to reconstruct climate through time. 
+SCUBIDO is a R package designed to perform Bayesain inference on multivariate proxy data to reconstruct climate through time. 
