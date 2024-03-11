@@ -1,0 +1,37 @@
+model
+{
+
+  ## MODERN DATA. likelihood
+  for(i in 1:N.rows_m) {
+
+    xrf_m[i,1:N.cols_m] ~ dmnorm(mean_m[i,1:N.cols_m], Sigma_inv)
+    xrf_m_pred[i,1:N.cols_m] ~ dmnorm(mean_m[i,1:N.cols_m], Sigma_inv)
+
+    for(j in 1:N.cols_m) {
+      mean_m[i,j] <- beta0[j] + beta1[j]*temp_m[i] + beta2[j]*pow(temp_m[i],2)
+    }  
+  }
+
+  # Prior on Sigma_inv
+  Sigma_inv ~ dwish(R, k+1)
+
+  ## Priors. One for each column (geochemical data)
+  for (j in 1:N.cols_m) {
+  
+    beta0[j] ~ dnorm(0,10^-2)
+    beta1[j] ~ dnorm(0,10^-2)
+    beta2[j] ~ dnorm(0,10^-2)
+    
+  }#End loop priors
+
+  ## Randow walk prior distribution for temperature modern
+  for(i in 2:N.rows_m) { 
+    temp_m[i] ~ dnorm(temp_m[i-1],prec_m[i])  
+    logit(prec_m[i]) <- 1/((time_m[i]-time_m[i-1])*pow(sd_rw,2))
+  }
+  
+  #Prior distribution for rw parameter
+  sd_rw ~ dunif(0,20)
+
+##End model
+}
