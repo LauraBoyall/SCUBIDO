@@ -1,12 +1,38 @@
 Package: SCUBIDO
-Title: What the Package Does (One Line, Title Case)
+Title: Simulating Climate Using Bayesian Inference with proxy Observational Data
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: c(
+    person("Laura", "Boyall", , "Laura.Boyall.2016@live.rhul.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7380-4294")), 
+           person("Andrew", "Parnell", role = c("aut", "ctb")),
+           person("Paul", "Lincoln", role = c("aut", "ctb")), 
+           person("Celia", "Martin-Puertas", role = c("aut", "ctb"))
+           )
+Description: The SCUBIDO package (Simulating Climate Using Bayesian Inference 
+    with proxy Data Observations) uses XRF core scanning proxy data from lake 
+    sediments and transforms this data into a quantitative climate reconstruction.
+    This approach uses Bayesian inference for the reconstruction and requires a 
+    calibration period which includes an overlapping period of instrumental climate
+    data e.g. temperature. The relationship between the XRF core scanning data
+    and the climate timeseries is expressed through a likelihood function. We then 
+    use Bayesian inference to combine this likelihood function with priors to extract
+    a climate reconstruction for the rest of the XRF core scanning data sequene.
+License: MIT + file LICENSE
+Imports: 
+    dplyr,
+    fitdistrplus,
+    ggplot2,
+    ggpubr,
+    magrittr,
+    mvtnorm,
+    R2jags,
+    zoo
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Depends: 
+    R (>= 3.6.0)
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
