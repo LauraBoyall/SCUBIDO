@@ -9,8 +9,8 @@ Authors@R: c(
            person("Celia", "Martin-Puertas", role = c("aut", "ctb"))
            )
 Description: The SCUBIDO package (Simulating Climate Using Bayesian Inference 
-    with proxy Data Observations) uses XRF core scanning proxy data from lake 
-    sediments and transforms this data into a quantitative climate reconstruction.
+    with proxy Data Observations) uses multivariate XRF core scanning proxy data from lake 
+    sediments and transforms it into a quantitative climate reconstruction.
     This approach uses Bayesian inference for the reconstruction and requires a 
     calibration period which includes an overlapping period of instrumental climate
     data e.g. temperature. The relationship between the XRF core scanning data
@@ -36,3 +36,5 @@ LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+URL: https://github.com/LauraBoyall/SCUBIDO
+BugReports: https://github.com/LauraBoyall/SCUBIDO/issues
