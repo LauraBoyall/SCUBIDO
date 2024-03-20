@@ -4,10 +4,10 @@
 \alias{SCUBIDO_apply}
 \title{Apply the relationship between modern climate and XRF core scanning data and apply to the fossil data}
 \usage{
-SCUBIDO_apply(calibration, temp_grid, plot_graph = FALSE, print = FALSE)
+SCUBIDO_apply(calibration, plot_graph = FALSE, print = FALSE)
 }
 \arguments{
-\item{temp_grid}{a sequence range between two values for the model to pick the temperature from. if working with anomalies use seq(-3, 3, length = 50)}
+\item{calibration}{the returned data file from the \code{\link{SCUBIDO_cal}} function}
 
 \item{plot_graph}{a function to plot the output of the SCUBIDO_apply function}
 
@@ -16,6 +16,8 @@ SCUBIDO_apply(calibration, temp_grid, plot_graph = FALSE, print = FALSE)
 \item{sorted}{the sorted data set coming from the first function}
 
 \item{calibration_data}{is the output list from the previous SCUBIDO_cal function.}
+
+\item{temp_grid}{a sequence range between two values for the model to pick the temperature from. if working with anomalies use seq(-3, 3, length = 50)}
 }
 \value{
 a data set containing the output
@@ -26,7 +28,6 @@ period in \code{\link{SCUBIDO_cal}} and applies this relationship to the fossil 
 }
 \examples{
 \dontrun{
-temp_grid <- seq(3,3, length = 50)
 MDP <- SCUBIDO_apply(calibration_data, temp_grid, plot_graph = T, print = F)
 }
 

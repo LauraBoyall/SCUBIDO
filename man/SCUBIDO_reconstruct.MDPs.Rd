@@ -4,7 +4,7 @@
 \alias{SCUBIDO_reconstruct.MDPs}
 \title{Reconstruction of climate}
 \usage{
-SCUBIDO_reconstruct.MDPs(MDPs, time_grid, plot_graph = FALSE, print = FALSE)
+SCUBIDO_reconstruct.MDPs(MDPs, time_grid, plot_graph = FALSE)
 }
 \arguments{
 \item{MDPs}{the MDP list created in the apply function}

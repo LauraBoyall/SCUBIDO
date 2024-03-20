@@ -20,17 +20,15 @@
 #'
 #'
 #' @return a data set containing the output
-#'
+#' @param calibration the returned data file from the \code{\link{SCUBIDO_cal}} function
 #'
 #' @examples
 #' \dontrun{
-#' temp_grid <- seq(3,3, length = 50)
-#' MDP <- SCUBIDO_apply(calibration_data, temp_grid, plot_graph = T, print = F)
+#' MDP <- SCUBIDO_apply(calibration_data, plot_graph = T, print = F)
 #'}
 #'
 #'
-#SCUBIDO_apply <- function(calibration,sorted, temp_grid, plot_graph = FALSE, print = FALSE){ #technically I don't think we need the sorted here as it should be stored in calibration
-SCUBIDO_apply <- function(calibration, temp_grid, plot_graph = FALSE, print = FALSE){
+SCUBIDO_apply <- function(calibration, plot_graph = FALSE, print = FALSE){
     UseMethod("SCUBIDO_apply")
 }
 
@@ -44,7 +42,7 @@ SCUBIDO_apply.calibration <- function(calibration,temp_grid, plot_graph = FALSE,
   down has stopped.")
   cal_run_results <- calibration$sims.list
   N_rows_f <- nrow(calibration$sorted$xrf_f_resc)
-  temp_grid <- seq(-3, 3, length = 50)
+  temp_grid <- calibration$temp_grid
 
   if (!file.exists(MDP_file)) {
     MDP_raw <- MDP <- matrix(0, nrow = N_rows_f, ncol = length(temp_grid))

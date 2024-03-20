@@ -15,6 +15,10 @@ SCUBIDO_cal(sorted, check_convergence = TRUE, plot = TRUE, summary = TRUE)
 
 \item{summary}{returns a printed summary of the output of the calibration model}
 
+\item{climate_min}{is the minimum expected climate value e.g. -3degreesC}
+
+\item{climate_max}{is the max expected climate value e.g. 3degreesC}
+
 \item{input_df}{the modern dataset used in \code{\link{SCUBIDO_input}} function}
 }
 \description{
@@ -23,7 +27,7 @@ function and computes the relationship between the modern XRF data and an
 instrumental climate time series. The function uses the JAGS package to fit
 a multivariate polynomial regression model to identify the relationship
 between the different XRF elements and the climate data provided. Specific
-model details can be found in Boyall et al (xxxx). The relationship between
+model details can be found in Boyall et al (in prep). The relationship between
 the elements and climate is then expressed through a likelihood function.
 If check_convergence = TRUE a plot showing the Rhat values is produced. This
 checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
@@ -42,7 +46,7 @@ If a point is <1.05 then is is assumed that the model has converged well.
 }
 \examples{
 \dontrun{
-SCUBIDO_cal(input_df, check_convergence = TRUE, plot = TRUE, summary = TRUE)
+SCUBIDO_cal(input_df,  plot = TRUE, summary = TRUE)
 }
 
 \dontrun{
