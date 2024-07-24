@@ -35,18 +35,6 @@
 #'
 SCUBIDO_input <- function(modern_data, fossil_data) {
 
-  samplesize <- min(20, nrow(modern_data)) # number of sample to remove
-  sample <- head(modern_data, samplesize) # get the data from the modern
-  modern_data <- tail(modern_data, -samplesize) # extract this from the modern data
-
-  # Create the validation data frame with the first and last column of the last 20 rows of modern_data
-  validation <- data.frame(firstColumn = sample[,1], lastColumn = sample[,ncol(sample)])
-  sample <- sample[,-ncol(sample)]   # Remove the last column from the last 20 rows of modern_data
-
-  # get the last rows of modern and put onto fossil
-  fossil_data <- rbind(fossil_data, sample)
-
-
   # Extract the first column and create age_m dataframe
   time_m <- modern_data %>%
     select(1) %>%
@@ -87,8 +75,7 @@ SCUBIDO_input <- function(modern_data, fossil_data) {
     xrf_m_resc = data.matrix(xrf_m_resc),
     time_f = as.numeric(as.character(unlist(time_f[[1]]))),
     xrf_f = data.matrix(xrf_f),
-    xrf_f_resc = data.matrix(xrf_f_resc),
-    validation = validation
+    xrf_f_resc = data.matrix(xrf_f_resc)
   )
 
   # Return the result_list (optional)
