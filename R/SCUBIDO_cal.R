@@ -5,13 +5,13 @@
 #'     instrumental climate time series. The function uses the JAGS package to fit
 #'     a multivariate polynomial regression model to identify the relationship
 #'     between the different XRF elements and the climate data provided. Specific
-#'     model details can be found in Boyall et al (xxxx). The relationship between
+#'     model details can be found in Boyall et al (in prep). The relationship between
 #'     the elements and climate is then expressed through a likelihood function.
 #'     If check_convergence = TRUE a plot showing the Rhat values is produced. This
 #'     checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
 #'     If a point is <1.05 then is is assumed that the model has converged well.
 #'
-#' @param input_df the modern dataset used in \code{\link{SCUBIDO_input}} function
+#' @param sorted the modern dataset saved after using the \code{\link{SCUBIDO_input}} function
 #' @param plot returns a plot of the relationship between the modern XRF elements and climate
 #' @param summary returns a printed summary of the output of the calibration model
 #'
@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' SCUBIDO_cal(input_df,  plot = TRUE, summary = TRUE)
+#' SCUBIDO_cal(sorted,  plot = TRUE, summary = TRUE)
 #' }
 #'
 
@@ -71,7 +71,7 @@ SCUBIDO_cal.sorted <- function(sorted,  plot = TRUE, summary = TRUE) {
     par(mar=c(3,3,2,1), mgp=c(2,.7,0), tck=-.01,las=1)
     par(mfrow = c(7,2))
     par_means = cal_run$BUGSoutput$mean
-    temp_grid = seq(-3,3,length=50)
+    temp_grid <- seq(-3,3,length = 50)
     for(i in 1:11) {
       plot(cal_data$temp_m, cal_data$xrf_m[,i],
            pch = 19,
