@@ -30,5 +30,4 @@ takes around 12 hours on a standard computer.
 \dontrun{
 SCUBIDO_reconstruct(calibration_data, plot_graph = TRUE)
 }
-
 }
