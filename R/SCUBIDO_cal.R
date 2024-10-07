@@ -14,7 +14,7 @@
 #' @param sorted the modern dataset saved after using the \code{\link{SCUBIDO_input}} function
 #' @param plot returns a plot of the relationship between the modern XRF elements and climate
 #' @param summary returns a printed summary of the output of the calibration model
-#'
+#' @export
 #' @import R2jags
 #'
 #' @examples
