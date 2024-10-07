@@ -7,21 +7,21 @@
 SCUBIDO_input(modern_data, fossil_data)
 }
 \arguments{
-\item{modern_data}{a data set containing age in BCE/CE in the first column, a climate data set in the second column and then the third column thereafter contain all of the XRF elements.}
+\item{modern_data}{a data set containing age in BP in the first column, a climate data set in the second column in anomalies, and then the third column thereafter contain all of the XRF elements.}
 
-\item{fossil_data}{a data set containing age in BCE/CE in the first column,the second column and thereafter contain all of the XRF elements used in the modern data}
+\item{fossil_data}{a data set containing age in BP in the first column,the second column and thereafter contain all of the XRF elements used in the modern data}
 }
 \value{
 list of transformed proxy data to be used in the models and a validation dataset
 }
 \description{
-This function takes the modern data set (modern_data) containing age in BCE/CE in the first
-column, a modern observational climate timeseries in the second column
-and then a final array of columns represeting the different xrf elements.
+This function takes the modern data set (modern_data) containing age in before present (BP) in the first
+column, a modern observational climate time series in the second column (in anomalies),
+and then the final columns should contain the data from different xrf elements.
 The second data set is the fossil data (fossil_data) and this take the same
 approach as the modern, but contains one less column as there is no
-climate data included.
-This function then takes these two data sets and rescales the fossil proxy
+climate data included thus age BP in the first and then the remaining columns containing the proxy data.
+This function then takes these two data sets and re scales the fossil proxy
 data to be consistent with the modern xrf data. It then returns a list
 containing the data required for the next stages of the proxy modelling.
 }

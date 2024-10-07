@@ -4,18 +4,16 @@
 \alias{SCUBIDO_cal}
 \title{Calculate the modern relationship between the proxy and climate}
 \usage{
-SCUBIDO_cal(sorted, check_convergence = TRUE, plot = TRUE, summary = TRUE)
+SCUBIDO_cal(sorted, plot = TRUE, summary = TRUE)
 
-SCUBIDO_cal(sorted, check_convergence = TRUE, plot = TRUE, summary = TRUE)
+SCUBIDO_cal(sorted, plot = TRUE, summary = TRUE)
 }
 \arguments{
-\item{check_convergence}{returns a summary plot of the calibration model}
+\item{sorted}{the modern dataset saved after using the \code{\link{SCUBIDO_input}} function}
 
 \item{plot}{returns a plot of the relationship between the modern XRF elements and climate}
 
 \item{summary}{returns a printed summary of the output of the calibration model}
-
-\item{input_df}{the modern dataset used in \code{\link{SCUBIDO_input}} function}
 }
 \description{
 The \code{SCUBIDO_cal} function uses the modern data from the \code{\link{SCUBIDO_input}}
@@ -23,7 +21,7 @@ function and computes the relationship between the modern XRF data and an
 instrumental climate time series. The function uses the JAGS package to fit
 a multivariate polynomial regression model to identify the relationship
 between the different XRF elements and the climate data provided. Specific
-model details can be found in Boyall et al (xxxx). The relationship between
+model details can be found in Boyall et al (in prep). The relationship between
 the elements and climate is then expressed through a likelihood function.
 If check_convergence = TRUE a plot showing the Rhat values is produced. This
 checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
@@ -34,19 +32,21 @@ function and computes the relationship between the modern XRF data and an
 instrumental climate time series. The function uses the JAGS package to fit
 a multivariate polynomial regression model to identify the relationship
 between the different XRF elements and the climate data provided. Specific
-model details can be found in Boyall et al (xxxx). The relationship between
+model details can be found in Boyall et al (in prep). The relationship between
 the elements and climate is then expressed through a likelihood function.
 If check_convergence = TRUE a plot showing the Rhat values is produced. This
 checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
 If a point is <1.05 then is is assumed that the model has converged well.
+The saved results from this function will be used to form the final reconstruction
+in the \code{\link{SCUBIDO_reconstruct}} function.
 }
 \examples{
 \dontrun{
-SCUBIDO_cal(input_df, check_convergence = TRUE, plot = TRUE, summary = TRUE)
+SCUBIDO_cal(sorted,  plot = TRUE, summary = TRUE)
 }
 
 \dontrun{
-SCUBIDO_cal(x, check_convergence = TRUE, plot = TRUE, summary = TRUE)
+SCUBIDO_cal(x,  plot = TRUE, summary = TRUE)
 }
 
 }
