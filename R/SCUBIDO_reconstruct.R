@@ -17,7 +17,6 @@
 #' @import mvtnorm
 #' @import fitdistrplus
 #' @import ggpubr
-#' @export
 #'
 #' @param calibration_data is the output list from the SCUBIDO_cal function.
 #' @param plot_graph A flag to plot the output of the reconstruction.
