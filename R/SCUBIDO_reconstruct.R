@@ -17,6 +17,7 @@
 #' @import mvtnorm
 #' @import fitdistrplus
 #' @import ggpubr
+#' @export
 #'
 #' @param calibration_data is the output list from the SCUBIDO_cal function.
 #' @param plot_graph A flag to plot the output of the reconstruction.
@@ -27,7 +28,7 @@
 #' \dontrun{
 #' SCUBIDO_reconstruct(calibration_data, plot_graph = TRUE)
 #' }
-#'
+#' @export
 
 SCUBIDO_reconstruct <- function(calibration_data,  plot_graph = FALSE) {
 
