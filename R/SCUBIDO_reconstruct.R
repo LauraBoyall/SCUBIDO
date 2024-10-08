@@ -153,7 +153,7 @@ SCUBIDO_reconstruct <- function(calibration_data,  plot_graph = FALSE) {
 
   if (plot_graph) {
     smot <- 1
-    plot <- ggplot(df_final, aes(x = yBP / 1000)) +
+    plot <- ggplot(df_final, aes(x = Age_BP / 1000)) +
       geom_ribbon(aes(ymin = rollmean(temp_low_95, smot, na.pad = TRUE), ymax = rollmean(temp_high_95, smot, na.pad = TRUE)), alpha = 0.6, fill = 'lightblue') +
       geom_ribbon(aes(ymin = rollmean(temp_low_50, smot, na.pad = TRUE), ymax = rollmean(temp_high_50, smot, na.pad = TRUE)), alpha = 0.3, fill = 'darkblue') +
       geom_line(aes(y = rollmean(temp_med, smot, na.pad = TRUE)), linetype = 'solid', size = 0.2) +
