@@ -65,29 +65,40 @@ SCUBIDO_cal.sorted <- function(sorted,  plot = TRUE, summary = TRUE) {
 
 
   if (plot) {
-    par(mar=c(3,3,2,1), mgp=c(2,.7,0), tck=-.01,las=1)
-    par(mfrow = c(7,2))
+    num_plots <- cal_data$N.cols_m
+    num_rows <- ceiling(sqrt(num_plots))
+    num_cols <- ceiling(num_plots / num_rows)
+
+    # Dynamically adjust the plot layout and margins
+    par(mfrow = c(num_rows, num_cols))
+    if (num_plots > 6) {
+      par(mar = c(3, 3, 2, 1))  # Smaller margins for many plots
+    } else {
+      par(mar = c(4, 4, 3, 2))  # Larger margins for fewer plots
+    }
+
     par_means = cal_run$BUGSoutput$mean
-    temp_grid <- seq(-3,3,length = 50)
-    for(i in cal_data$N.cols_m) {
-      plot(cal_data$temp_m, cal_data$xrf_m[,i],
+    temp_grid = seq(-3, 3, length = 50)
+
+    for (i in 1:num_plots) {
+      plot(cal_data$temp_m, cal_data$xrf_m[, i],
            pch = 19,
            xlab = 'Temperature',
            ylab = 'XRF',
            main = colnames(cal_data$xrf_m)[i],
-           ylim = range(c(cal_data$xrf_m[,i], cal_data$xrf_m[,i]))) #from the for loop to the end of this, it is just plotting the NAO against the XRF, nothing to do with the model
+           ylim = range(c(cal_data$xrf_m[, i], cal_data$xrf_m[, i])))
 
-      mean_pred = with(par_means, beta0[i] + beta1[i] * temp_grid + beta2[i] * (temp_grid^2))
-      lines(temp_grid, mean_pred) #Here we are putting the parameter means on each of the graphs.
+      mean_pred <- with(par_means, beta0[i] + beta1[i] * temp_grid + beta2[i] * (temp_grid^2))
+      lines(temp_grid, mean_pred)
 
-      low_pred = with(par_means, beta0[i] + beta1[i] * temp_grid + beta2[i] * (temp_grid^2) - 2 * sqrt(solve(par_means$Sigma_inv)[i,i]) )
+      low_pred <- with(par_means, beta0[i] + beta1[i] * temp_grid + beta2[i] * (temp_grid^2) - 2 * sqrt(solve(par_means$Sigma_inv)[i, i]))
       lines(temp_grid, low_pred, lty = 2)
 
-      high_pred = with(par_means, beta0[i] + beta1[i] * temp_grid + beta2[i] * (temp_grid^2) + 2 * sqrt(solve(par_means$Sigma_inv)[i,i]) )
+      high_pred <- with(par_means, beta0[i] + beta1[i] * temp_grid + beta2[i] * (temp_grid^2) + 2 * sqrt(solve(par_means$Sigma_inv)[i, i]))
       lines(temp_grid, high_pred, lty = 2)
-      #abline(h = xrf_f_resc[510,i], col = 'red')
     }
-    par(mfrow = c(1,1))
+
+    par(mfrow = c(1, 1))  # Reset to single plot layout
   }
 
 
