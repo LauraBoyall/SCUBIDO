@@ -1,34 +1,3 @@
-#' Calculate the modern relationship between the proxy and climate
-#'
-#' The `SCUBIDO_cal` function uses the modern data from the \code{\link{SCUBIDO_input}}
-#'     function and computes the relationship between the modern XRF data and an
-#'     instrumental climate time series. The function uses the JAGS package to fit
-#'     a multivariate polynomial regression model to identify the relationship
-#'     between the different XRF elements and the climate data provided. Specific
-#'     model details can be found in Boyall et al (in prep). The relationship between
-#'     the elements and climate is then expressed through a likelihood function.
-#'     If check_convergence = TRUE a plot showing the Rhat values is produced. This
-#'     checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
-#'     If a point is <1.05 then it is assumed that the model has converged well.
-#'     The saved results from this function will be used to form the final reconstruction
-#'     in the \code{\link{SCUBIDO_reconstruct}} function.
-#'
-#' @param sorted the modern dataset saved after using the \code{\link{SCUBIDO_input}} function
-#' @param plot returns a plot of the relationship between the modern XRF elements and climate
-#' @param summary returns a printed summary of the output of the calibration model
-#' @export
-#'
-#' @import R2jags
-#'
-#' @examples
-#' \dontrun{
-#' SCUBIDO_cal(x, plot = TRUE, summary = TRUE)
-#' }
-SCUBIDO_cal <- function(sorted, plot = TRUE, summary = TRUE) {
-  UseMethod("SCUBIDO_cal")
-}
-
-# Do not export this function!
 SCUBIDO_cal.sorted <- function(sorted, plot = TRUE, summary = TRUE) {
   # Function body remains unchanged here
   cal_data <- list(
