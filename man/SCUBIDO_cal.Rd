@@ -36,7 +36,7 @@ model details can be found in Boyall et al (in prep). The relationship between
 the elements and climate is then expressed through a likelihood function.
 If check_convergence = TRUE a plot showing the Rhat values is produced. This
 checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
-If a point is <1.05 then is is assumed that the model has converged well.
+If a point is <1.05 then it is assumed that the model has converged well.
 The saved results from this function will be used to form the final reconstruction
 in the \code{\link{SCUBIDO_reconstruct}} function.
 }
@@ -46,7 +46,6 @@ SCUBIDO_cal(sorted,  plot = TRUE, summary = TRUE)
 }
 
 \dontrun{
-SCUBIDO_cal(x,  plot = TRUE, summary = TRUE)
+SCUBIDO_cal(x, plot = TRUE, summary = TRUE)
 }
-
 }
