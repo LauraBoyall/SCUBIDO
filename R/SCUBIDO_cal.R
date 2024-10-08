@@ -69,7 +69,7 @@ SCUBIDO_cal.sorted <- function(sorted,  plot = TRUE, summary = TRUE) {
     par(mfrow = c(7,2))
     par_means = cal_run$BUGSoutput$mean
     temp_grid <- seq(-3,3,length = 50)
-    for(i in cal_data$N.cols_m) {
+    for(i in 1:11) {
       plot(cal_data$temp_m, cal_data$xrf_m[,i],
            pch = 19,
            xlab = 'Temperature',
