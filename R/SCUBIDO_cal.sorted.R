@@ -28,15 +28,9 @@ SCUBIDO_cal <- function(sorted, plot = TRUE, summary = TRUE) {
   UseMethod("SCUBIDO_cal")
 }
 
-#' Calculate the modern relationship between the proxy and climate (sorted method)
-#'
-#' This method is specifically for datasets that have been sorted using
-#' the \code{\link{SCUBIDO_input}} function.
-#'
-#' @inherit SCUBIDO_cal
-#' @export
+# Do not export this function!
 SCUBIDO_cal.sorted <- function(sorted, plot = TRUE, summary = TRUE) {
-  # Your function body remains unchanged here
+  # Function body remains unchanged here
   cal_data <- list(
     N.rows_m = nrow(sorted$xrf_m),
     N.cols_m = ncol(sorted$xrf_m),
@@ -106,4 +100,3 @@ SCUBIDO_cal.sorted <- function(sorted, plot = TRUE, summary = TRUE) {
   class(calibration) <- ("calibration")
   return(calibration)
 }
-
