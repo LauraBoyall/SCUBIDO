@@ -9,23 +9,25 @@
 #'     the elements and climate is then expressed through a likelihood function.
 #'     If check_convergence = TRUE a plot showing the Rhat values is produced. This
 #'     checks whether the Marcov Chain Monte Carlo (MCMC) algorithm has fitted.
-#'     If a point is <1.05 then is is assumed that the model has converged well.
+#'     If a point is <1.05 then it is assumed that the model has converged well.
+#'     The saved results from this function will be used to form the final reconstruction
+#'     in the \code{\link{SCUBIDO_reconstruct}} function.
 #'
 #' @param sorted the modern dataset saved after using the \code{\link{SCUBIDO_input}} function
 #' @param plot returns a plot of the relationship between the modern XRF elements and climate
 #' @param summary returns a printed summary of the output of the calibration model
 #' @export
+#'
 #' @import R2jags
 #'
 #' @examples
 #' \dontrun{
-#' SCUBIDO_cal(sorted,  plot = TRUE, summary = TRUE)
+#' SCUBIDO_cal(x, plot = TRUE, summary = TRUE)
 #' }
-#'
-
-SCUBIDO_cal<- function(sorted,  plot = TRUE, summary = TRUE){
+SCUBIDO_cal <- function(sorted, plot = TRUE, summary = TRUE) {
   UseMethod("SCUBIDO_cal")
 }
+
 #' @export
 SCUBIDO_cal.sorted <- function(sorted,  plot = TRUE, summary = TRUE) {
   cal_data <- list(
