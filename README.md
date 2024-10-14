@@ -3,10 +3,12 @@
 The **SCUBIDO** (Simulating Climate Using Bayesian Inference from proxy Data Observations) R package has been created to produce Bayesian reconstructions of climate variability based on XRF core scanning data. 
 The statistics behind this approach can be found in Boyall et al (in prep) and should be cited alongside this package if used for future work. 
 The R package can be downloaded using the following:
+
 ```r
 devtools::install_github("LauraBoyall/SCUBIDO")
 library(SCUBIDO)
 ```
+
 ## Instructions
 This package has three functions: `SCUBIDO_input` which is used to sort the modern calibration data (includes Age BP, an instrumental 
 climate record and then overlapping XRF data) and the fossil/proxy data (containing Age BP and the rest of the XRF data which does not overlap with the climate data. 
