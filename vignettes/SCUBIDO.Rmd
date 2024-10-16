@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 
 This vignette is used to explain in greater detail the work flow of the `SCUBIDO` R package.
 
-The aim of this package is to create a reconstruction of palaeoclimate given multivariate μXRF-CS data from lake sediments using Bayesian inference. More detials on the mathematics behind the model can be found in Boyall et al (in prep).
+The aim of this package is to create a reconstruction of palaeoclimate given multivariate μXRF-CS data from lake sediments using Bayesian inference. More detaols on the mathematics behind the model can be found in Boyall et al (in prep).
+
+It is vital that each of the **3** functions are used for this package otherwise the package will fail. Therefore this vignette walks you each function.
 
 ### Introduction
 
@@ -85,3 +87,76 @@ print(head(fake_data),row.names = F)
 
 
 ```
+
+The second data set required is the `fossil_data`. This data is the remainder of your μXRF-CS data and follows the same structure as the modern but the second column which held the climate value is not there. Therefore you should have one less column in your table. Example below:
+
+```{r message=FALSE,warning=FALSE, echo = FALSE}
+# Set seed for reproducibility
+set.seed(123)
+
+# Define number of rows for the fake data
+n <- 100
+
+# Generate random decimal increments (e.g., between 0.1 and 1 year)
+age_increments <- runif(n, min = 0.1, max = 1)
+
+# Create Age BP column starting from 291 BP, using cumulative sum of the increments
+age_bp <- 291 + cumsum(age_increments)
+
+# Create random XRF data (example range for each element, rounded)
+S <- round(runif(n, min = 0, max = 1000))
+Si <- round(runif(n, min = 0, max = 1000))
+K <- round(runif(n, min = 0, max = 1000))
+Ca <- round(runif(n, min = 0, max = 1000))
+Ti <- round(runif(n, min = 0, max = 1000))
+M <- round(runif(n, min = 0, max = 1000))
+V <- round(runif(n, min = 0, max = 1000))
+Rb <- round(runif(n, min = 0, max = 1000))
+Sr <- round(runif(n, min = 0, max = 1000))
+
+# Combine into a data frame
+fake_data <- data.frame(
+  Age_BP = age_bp,
+  S = S,
+  Si = Si,
+  K = K,
+  Ca = Ca,
+  Ti = Ti,
+  M = M,
+  V = V,
+  Rb = Rb,
+  Sr = Sr
+)
+
+# Show the first few rows of the data without row numbers
+print(head(fake_data), row.names = FALSE)
+
+```
+
+Once the data is set up we can begin by using the `SCUBIDO` package!
+
+## SCUBIDO_input
+
+The `SCUBDIO_input` function is used to sort your data and split create a data list to be used later in the model. It is important that you save the outputs of the function as shown below as these are needed in the following function.
+
+the summary print out shows what is saved within the sorted list. This function also re-scales the μXRF-CS data and creates a few time files which help with later application.
+
+```{r, message=FALSE,warning=FALSE}
+#sorted_data <- SCUBIDO_input(modern_data, fossil_data)
+#summary(sorted_data)
+```
+
+## SCUBIDO_cal
+
+Once the data has been sorted we can now begin to model the data! This first function involves the calibration modern data. Within this stage we learn about the relationship between the individual elements and climate, but also about the covariance between them.
+
+Here we use the saved list from the `SCUBIDO_cal` function. Once this function has run it will save a model file to your working directory. This uses the system date to allow the script to load previous models. If you would like to upload the model on another day then you should go to the saved file and change the date in the file name as the function will otherwise re-start the model and save with today's date.
+
+```{r, message=FALSE,warning=FALSE}
+#calibrated_data <- SCUBIDO_cal(sorted_data, plot = T, summary = T) 
+
+```
+
+Here we would like to ensure that the model has fully converged and a simple way of checking this is through looking at the R-hat values. You can read more about what R-hat values mean by checking out Gelman and Rubin (1992) and Brooks and Gelman (1998). However in summary your R-hat values should be \<1.05. We can check this below.
+
+R-HAT VALUES
