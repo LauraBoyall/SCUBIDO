@@ -1,0 +1,87 @@
+---
+title: "SCUBIDO"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SCUBIDO}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+**S**imulating **C**limate **U**sing **B**ayesian **I**nference from proxy **D**ata **O**bservations
+
+This vignette is used to explain in greater detail the work flow of the `SCUBIDO` R package.
+
+The aim of this package is to create a reconstruction of palaeoclimate given multivariate μXRF-CS data from lake sediments using Bayesian inference. More detials on the mathematics behind the model can be found in Boyall et al (in prep).
+
+### Introduction
+
+The first thing to do it load in the `SCUBIDO` package. If `SCUBIDO` is not already installed then do so by loading the `devtools` package and then installing from Github.
+
+```{r setup, message=FALSE,warning=FALSE}
+devtools::install_github("LauraBoyall/SCUBIDO") # if not previously installed
+library(SCUBIDO)
+```
+
+## Loading in your data
+
+The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in cal BP**) is in the first column, the climate data is in the second and then the remaining columns are the individual elements. We recomend here that your μXRF-CS data is central-log ratio transformed.
+
+An example of the structure data set is displayed below using a fake dataset:
+
+```{r message=FALSE,warning=FALSE, echo = FALSE}
+
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define number of rows for the fake data
+n <- 100
+
+# Create Age BP column (starting from 1990 CE, transformed to Age BP)
+# Age BP = 1950 - Year CE
+age_ce <- seq(1990, 1990 - (n - 1), by = -1)
+age_bp <- 1950 - age_ce
+
+# Set a baseline temperature (e.g., 15 degrees Celsius) and create random anomalies
+baseline_temp <- 15  # baseline temperature
+temperature_anomalies <- rnorm(n, mean = 0, sd = 0.5)  # anomalies around 0, with small variations
+
+# Create random XRF data (example range for each element)
+S <- round(runif(n, min = 0, max = 1000))
+Si <- round(runif(n, min = 0, max = 1000))
+K <- round(runif(n, min = 0, max = 1000))
+Ca <- round(runif(n, min = 0, max = 1000))
+Ti <- round(runif(n, min = 0, max = 1000))
+M <- round(runif(n, min = 0, max = 1000))
+V <- round(runif(n, min = 0, max = 1000))
+Rb <- round(runif(n, min = 0, max = 1000))
+Sr <- round(runif(n, min = 0, max = 1000))
+
+# Combine into a data frame
+fake_data <- data.frame(
+  Age_BP = age_bp,
+  Temperature_Anomaly = temperature_anomalies,
+  S = S,
+  Si = Si,
+  K = K,
+  Ca = Ca,
+  Ti = Ti,
+  M = M,
+  V = V,
+  Rb = Rb,
+  Sr = Sr
+)
+
+# Show the first few rows of the data
+print(head(fake_data),row.names = F)
+
+
+
+```
