@@ -1,3 +1,4 @@
+# Ignore project-specific, temporary, and system files
 .Rproj.user
 .Rhistory
 .Rdata
@@ -5,5 +6,7 @@
 .DS_Store
 .quarto
 inst/doc
+
+# Combined changes from both local and remote
 vignettes/*.rds
 *.tar.gz
