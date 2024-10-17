@@ -194,7 +194,7 @@ capture.output({
 }, file = temp)
 sink()  # Restore console output
 
-)
+
 ```
 
 Whilst this is the default plot the function produces, you can easily extract the resulting data frame and plot in whichever way you wish.
