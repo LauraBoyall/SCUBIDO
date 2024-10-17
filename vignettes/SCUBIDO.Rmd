@@ -170,7 +170,7 @@ The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the
 
 **Note that this function does take a long time, it will ask you if you wish to continue but please be aware that for thousands of date layers (rows in your xrf data) then it is possible that it could take up to 24 hours (why not run it over the weekend!). This is based on running it on a single core so if you can use parallel cores then use this.**
 
-```{r reconstruct, message=FALSE,warning=FALSE}
+```{r reconstruct, message=FALSE,warning=FALSE, echo=TRUE}
 
 reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
 
