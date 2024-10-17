@@ -198,7 +198,7 @@ tryCatch(
   error = function(e) {
     # Print a message in case of an error (for debugging purposes)
     message("An error occurred during reconstruction: ", e$message)
-  }
+  } 
 )
 
 # If the SCUBIDO_reconstruct function does not automatically plot, you can plot a specific component
