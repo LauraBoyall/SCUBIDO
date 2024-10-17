@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**S**imulating **C**limate **U**sing **B**ayesian **I**nference from proxy **D**ata **O**bservations
+**S**imulating **C**limate **U**sing **B**ayesian **I**nference from proxy **D**ata **O**bservations![](images/SCUBIDO logo .png){width="0.71in" height="0.81in"}
 
 This vignette is used to explain in greater detail the work flow of the `SCUBIDO` R package.
 
@@ -33,9 +33,11 @@ library(SCUBIDO)
 
 ## Loading in your data
 
-The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in cal BP**) is in the first column, the climate data is in the second and then the remaining columns are the individual elements. We recomend here that your μXRF-CS data is central-log ratio transformed.
+The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in cal BP**) is in the first column, the climate data is in the second and then the remaining columns are the individual elements. We recommend here that your μXRF-CS data is central-log ratio transformed.
 
-An example of the structure data set is displayed below using a fake dataset:
+Please not that your climate variable must **be in anomalies** as we use a grid of -3 to +3°C for the model to pick values from. This current version of `SCUBIDO` does not currently have an approach to reconstruct beyond these temperatures using the package functions. If users are reconstructing climate and believe that the values are going to be greater than this range then we refer them to the R file in the GitHub repository to change the grid manually.
+
+An example of the structure data set is displayed below using a fake data set:
 
 ```{r message=FALSE,warning=FALSE, echo = FALSE}
 
@@ -142,8 +144,8 @@ The `SCUBDIO_input` function is used to sort your data and split create a data l
 the summary print out shows what is saved within the sorted list. This function also re-scales the μXRF-CS data and creates a few time files which help with later application.
 
 ```{r, message=FALSE,warning=FALSE}
-#sorted_data <- SCUBIDO_input(modern_data, fossil_data)
-#summary(sorted_data)
+sorted_data <- SCUBIDO_input(modern_data = modern_data, fossil_data = fossil_data)
+summary(sorted_data)
 ```
 
 ## SCUBIDO_cal
@@ -152,11 +154,36 @@ Once the data has been sorted we can now begin to model the data! This first fun
 
 Here we use the saved list from the `SCUBIDO_cal` function. Once this function has run it will save a model file to your working directory. This uses the system date to allow the script to load previous models. If you would like to upload the model on another day then you should go to the saved file and change the date in the file name as the function will otherwise re-start the model and save with today's date.
 
-```{r, message=FALSE,warning=FALSE}
-#calibrated_data <- SCUBIDO_cal(sorted_data, plot = T, summary = T) 
+```{r, message=FALSE,warning=FALSE, fig.width=8, fig.height=6}
+calibrated_data <- SCUBIDO_cal(sorted = sorted_data, plot = T, summary = F) 
 
 ```
 
-Here we would like to ensure that the model has fully converged and a simple way of checking this is through looking at the R-hat values. You can read more about what R-hat values mean by checking out Gelman and Rubin (1992) and Brooks and Gelman (1998). However in summary your R-hat values should be \<1.05. We can check this below.
+Here we would like to ensure that the model has fully converged and a simple way of checking this is through looking at the R-hat values. You can read more about what R-hat values mean by checking out Gelman and Rubin (1992) and Brooks and Gelman (1998). However in summary your R-hat values should be \<1.05. You can find this on the print out after this code has run on the far left side of the table if you choose `summary = TRUE`.
 
-R-HAT VALUES
+If you choose to also do `plot = TRUE` then you will get a series of graphs showing the quadratic relationship between the XRF elements and the climate time series. All of the outputs for this will be stored in your calibrated file, for our example it will be stored in `calibrated_data` and the `sims.list` list stored inside this will have all of the model outputs if you would like to plot differently / explore the model and then the `sorted` list stored in the `calibrated_data` contains the data from the previous function.
+
+## SCUBIDO_reconstruct
+
+The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the final reconstruction of quantitative climate given μXRF-CS data. Like usual we we load in the previous function's file (`calibrated_data`).
+
+**Note that this function does take a long time, it will ask you if you wish to continue but please be aware that for thousands of date layers (rows in your xrf data) then it is possible that it could take up to 24 hours (why not run it over the weekend!). This is based on running it on a single core so if you can use parallel cores then use this.**
+
+```{r message=FALSE,warning=FALSE, echo = FALSE, fig.width=8, fig.height=6}
+reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = T)
+```
+
+Whilst this is the default plot the function produces, you can easily extract the resulting data frame and plot in whichever way you wish.
+
+```{r}
+final <- reconstruction$reconstruction # note that we have saved our reconstruction as 'reconstruction' however you may have chosen a different name!
+
+# write.csv(final, "Final Climate Reconstruction.csv)
+
+```
+
+And there you have it! By this point you would have been able to reconstruct annual climate given μXRF-CS data! If you have any queries please contact Laura Boyall at Laura.boyall.2016\@live.rhul.ac.uk
+
+You must cite the original publication (Boyall et al., in prep) if you use this package to publish any work.
+
+***Happy modelling!!***
