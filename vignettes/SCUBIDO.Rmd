@@ -180,21 +180,9 @@ The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the
 
 **Note that this function does take a long time, it will ask you if you wish to continue but please be aware that for thousands of date layers (rows in your xrf data) then it is possible that it could take up to 24 hours (why not run it over the weekend!). This is based on running it on a single core so if you can use parallel cores then use this.**
 
-```{r reconstruct, echo=TRUE, fig.width=8, fig.height=6}
-# Show this line to users, indicating normal function usage
+```{r reconstruct, echo=TRUE, eval=FALSE, fig.width=8, fig.height=6}
+# This line will be shown to users (but won't be evaluated here)
 reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
-
-# Suppress unwanted console output (including print, messages, and progress bars)
-temp <- tempfile()
-
-# Redirect output to a temporary file to suppress all messages
-sink(temp)
-capture.output({
-  reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
-}, file = temp)
-sink()  # Restore console output
-
-
 ```
 
 Whilst this is the default plot the function produces, you can easily extract the resulting data frame and plot in whichever way you wish.
