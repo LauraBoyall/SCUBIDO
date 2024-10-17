@@ -26,7 +26,7 @@ It is vital that each of the **3** functions are used for this package otherwise
 
 The first thing to do it load in the `SCUBIDO` package. If `SCUBIDO` is not already installed then do so by loading the `devtools` package and then installing from Github.
 
-```{r setup, message=FALSE,warning=FALSE}
+```{r install, message=FALSE,warning=FALSE, echo=TRUE}
 devtools::install_github("LauraBoyall/SCUBIDO") # if not previously installed
 library(SCUBIDO)
 ```
