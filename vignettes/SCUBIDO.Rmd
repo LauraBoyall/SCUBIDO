@@ -183,6 +183,35 @@ The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the
 ```{r reconstruct, echo=TRUE, eval=FALSE, fig.width=8, fig.height=6}
 # This line will be shown to users (but won't be evaluated here)
 reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
+
+```
+
+```{r reconstruct-run, echo=FALSE, fig.width=8, fig.height=6}
+# Suppress all console output
+tryCatch(
+  {
+    # Capture and suppress all console output
+    invisible(capture.output({
+      reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
+    }, type = "message"))
+  },
+  error = function(e) {
+    # Print a message in case of an error (for debugging purposes)
+    message("An error occurred during reconstruction: ", e$message)
+  }
+)
+
+# If the SCUBIDO_reconstruct function does not automatically plot, you can plot a specific component
+if (exists("reconstruction")) {
+  # Check if 'reconstruction' has a specific component that can be plotted
+  if (is.list(reconstruction) && "plot_data" %in% names(reconstruction)) {
+    plot(reconstruction$plot_data) # Replace 'plot_data' with the appropriate list component
+  } else if (is.data.frame(reconstruction)) {
+    plot(reconstruction)
+  } else {
+    message("No valid plot data found in 'reconstruction'")
+  }
+}
 ```
 
 Whilst this is the default plot the function produces, you can easily extract the resulting data frame and plot in whichever way you wish.
