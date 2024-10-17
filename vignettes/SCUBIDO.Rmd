@@ -154,20 +154,10 @@ Once the data has been sorted we can now begin to model the data! This first fun
 
 Here we use the saved list from the `SCUBIDO_cal` function. Once this function has run it will save a model file to your working directory. This uses the system date to allow the script to load previous models. If you would like to upload the model on another day then you should go to the saved file and change the date in the file name as the function will otherwise re-start the model and save with today's date.
 
-```{r model-calibration, echo=TRUE, message=FALSE, fig.width=8, fig.height=6}
+```{r calibration, message=FALSE,warning=FALSE}
 
 calibrated_data <- SCUBIDO_cal(sorted = sorted_data, plot = TRUE, summary = FALSE)
 
-temp <- tempfile()
-sink(temp)
-tryCatch(
-  {
-    calibrated_data <- SCUBIDO_cal(sorted = sorted_data, plot = TRUE, summary = FALSE)
-  },
-  finally = {
-    sink() 
-  }
-)
 ```
 
 Here we would like to ensure that the model has fully converged and a simple way of checking this is through looking at the R-hat values. You can read more about what R-hat values mean by checking out Gelman and Rubin (1992) and Brooks and Gelman (1998). However in summary your R-hat values should be \<1.05. You can find this on the print out after this code has run on the far left side of the table if you choose `summary = TRUE`.
@@ -180,7 +170,7 @@ The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the
 
 **Note that this function does take a long time, it will ask you if you wish to continue but please be aware that for thousands of date layers (rows in your xrf data) then it is possible that it could take up to 24 hours (why not run it over the weekend!). This is based on running it on a single core so if you can use parallel cores then use this.**
 
-```{r reconstruct, echo=TRUE, results='hide', message=FALSE, warning=FALSE}
+```{r reconstruct, message=FALSE,warning=FALSE}
 
 reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
 
