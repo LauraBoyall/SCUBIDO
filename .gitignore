@@ -10,3 +10,5 @@ inst/doc
 # Combined changes from both local and remote
 vignettes/*.rds
 *.tar.gz
+/doc/
+/Meta/
