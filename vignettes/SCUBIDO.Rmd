@@ -144,6 +144,11 @@ The `SCUBDIO_input` function is used to sort your data and split create a data l
 
 the summary print out shows what is saved within the sorted list. This function also re-scales the μXRF-CS data and creates a few time files which help with later application.
 
+```{r load-data, echo=FALSE}
+data(modern_data, package = "SCUBIDO") #if you want to use the package example data
+data(fossil_data, package = "SCUBIDO") #if you want to use the package example data
+```
+
 ```{r, message=FALSE,warning=FALSE}
 sorted_data <- SCUBIDO_input(modern_data = modern_data, fossil_data = fossil_data)
 summary(sorted_data)
@@ -155,7 +160,8 @@ Once the data has been sorted we can now begin to model the data! This first fun
 
 Here we use the saved list from the `SCUBIDO_cal` function. Once this function has run it will save a model file to your working directory. This uses the system date to allow the script to load previous models. If you would like to upload the model on another day then you should go to the saved file and change the date in the file name as the function will otherwise re-start the model and save with today's date.
 
-```{r calibration, message=FALSE,warning=FALSE}
+```{r, message=FALSE,warning=FALSE, fig.width=8, fig.height=6}
+#{r calibration, message=FALSE,warning=FALSE}
 
 calibrated_data <- SCUBIDO_cal(sorted = sorted_data, plot = TRUE, summary = FALSE)
 
@@ -170,6 +176,10 @@ If you choose to also do `plot = TRUE` then you will get a series of graphs show
 The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the final reconstruction of quantitative climate given μXRF-CS data. Like usual we we load in the previous function's file (`calibrated_data`).
 
 **Note that this function does take a long time, it will ask you if you wish to continue but please be aware that for thousands of date layers (rows in your xrf data) then it is possible that it could take up to 24 hours (why not run it over the weekend!). This is based on running it on a single core so if you can use parallel cores then use this.**
+
+```{r message=FALSE,warning=FALSE, echo = FALSE, fig.width=8, fig.height=6}
+reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
+```
 
 ```{r reconstruct, message=FALSE,warning=FALSE, echo=TRUE}
 

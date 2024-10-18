@@ -4,21 +4,22 @@
 #'
 #' @docType data
 #' @name modern_data
-#' @format A data frame with 199 rows and 13 columns:
+#' @format A data frame with 75 rows and 15 columns:
 #' \describe{
-#'   \item{Age_BP}{Calibrated age in years BP}
-#'   \item{Annual}{Annual temperature anomalies}
-#'   \item{Si}{Si data}
-#'   \item{S}{S data}
-#'   \item{K}{K data}
-#'   \item{Ca}{Ca data}
-#'   \item{Ti}{Ti data}
-#'   \item{V}{V data}
-#'   \item{Mn}{Mn data}
-#'   \item{Fe}{Fe data}
-#'   \item{Rb}{Rb data}
-#'   \item{Sr}{Sr data}
-#'   \item{Zr}{Zr data}
+#'   \item{Age.BP}{Calibrated age in years BP}
+#'   \item{Temp}{Anomaly temperature data}
+#'   \item{Al.clr}{Al data}
+#'   \item{Si.clr}{Si data}
+#'   \item{K.clr}{K data}
+#'   \item{Ca.clr}{Ca data}
+#'   \item{Ti.clr}{Ti data}
+#'   \item{V.clr}{V data}
+#'   \item{Cr.clr}{Cr data}
+#'   \item{Mn.clr}{Mn data}
+#'   \item{Fe.clr}{Fe data}
+#'   \item{Zn.clr}{Zn data}
+#'   \item{Rb.clr}{Rb data}
+#'   \item{Sr.clr}{Sr data}
+#'   \item{Zr.clr}{Zr data}
 #' }
-#' @source Boyall et al (2024, JQS)
 "modern_data"
