@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**S**imulating **C**limate **U**sing **B**ayesian **I**nference from proxy **D**ata **O**bservations![](images/SCUBIDO logo .png){width="0.71in" height="0.81in"}
+**S**imulating **C**limate **U**sing **B**ayesian **I**nference from proxy **D**ata **O**bservations![](images/SCUBIDO%20logo%20.png){width="0.71in" height="0.81in"}
 
 This vignette is used to explain in greater detail the work flow of the `SCUBIDO` R package.
 
@@ -85,6 +85,7 @@ fake_data <- data.frame(
 
 # Show the first few rows of the data
 print(head(fake_data),row.names = F)
+
 
 
 

@@ -138,6 +138,7 @@ SCUBIDO_reconstruct <- function(calibration_data,  plot_graph = FALSE) {
   temp_all <- fossil_run$BUGSoutput$sims.list$temp_all
   pick_grid <- which(time_all %in% MDPs$sorted$time_grid)
   temp_grid <- temp_all[, pick_grid]
+  Age_BP = MDPs$sorted$time_grid
 
   df_final <- data.frame(
     Age_BP = MDPs$sorted$time_grid,
