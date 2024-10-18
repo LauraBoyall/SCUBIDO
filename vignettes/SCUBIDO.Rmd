@@ -88,7 +88,7 @@ print(head(fake_data),row.names = F)
 
 
 
-
+ 
 ```
 
 The second data set required is the `fossil_data`. This data is the remainder of your μXRF-CS data and follows the same structure as the modern but the second column which held the climate value is not there. Therefore you should have one less column in your table. Example below:
