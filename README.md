@@ -9,6 +9,7 @@ library(SCUBIDO)
 ```
 You can find detailed instructions on how to run this package here (https://lauraboyall.github.io/SCUBIDO/)
 
+**NOTE** that this package uses JAGS (Just Another Gibbs Sampler) and therefore requires the software to be downloaded to your device before the code can run. You can access the latest version for download here: https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/ 
 
 **Stuff to remember**
 The model files are saved to your working directory with the system data in the title. This allows the model to be re-uploaded rather than having to be re-run, however we would recomend that 
