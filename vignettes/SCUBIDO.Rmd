@@ -201,6 +201,6 @@ final <- reconstruction$reconstruction # note that we have saved our reconstruct
 
 And there you have it! By this point you would have been able to reconstruct annual climate given μXRF-CS data! If you have any queries please contact Laura Boyall at Laura.boyall.2016\@live.rhul.ac.uk
 
-You must cite the original publication (Boyall et al., in prep) if you use this package to publish any work.
+You must cite the original publication (Boyall et al., in prep) if you use this package to publish any work. 
 
 ***Happy modelling!!***
