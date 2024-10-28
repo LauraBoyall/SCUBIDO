@@ -21,7 +21,8 @@ This vignette is used to explain in greater detail the work flow of the `SCUBIDO
 The aim of this package is to create a reconstruction of palaeoclimate given multivariate μXRF-CS data from lake sediments using Bayesian inference. More detaols on the mathematics behind the model can be found in Boyall et al (in prep).
 
 It is vital that each of the **3** functions are used for this package otherwise the package will fail. Therefore this vignette walks you each function.
-This package depends on having the JAGS (just another gibbs sampler). It is integral that you **download** this software prior to installing `SCUBIDO` otherwise the package will not laod. Use the link here: https://sourceforge.net/projects/mcmc-jags/
+
+This package depends on having the JAGS (just another gibbs sampler). It is integral that you **download** this software prior to installing `SCUBIDO` otherwise the package will not laod. Use the link here: https://sourceforge.net/projects/mcmc-jags/ 
 
 ### Introduction
 
