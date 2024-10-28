@@ -35,9 +35,9 @@ library(SCUBIDO)
 
 ## Loading in your data
 
-The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in cal BP**) is in the first column (from the most recent to oldest), the climate data is in the second and then the remaining columns are the individual elements. We recommend here that your μXRF-CS data is central-log ratio transformed.
+The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in cal BP**) is in the first column (**from the most recent to oldest**), the climate data is in the second and then the remaining columns are the individual elements. We recommend here that your μXRF-CS data is central-log ratio transformed.
 
-Please not that your climate variable must **be in anomalies** as we use a grid of -3 to +3°C for the model to pick values from. This current version of `SCUBIDO` does not currently have an approach to reconstruct beyond these temperatures using the package functions. If users are reconstructing climate and believe that the values are going to be greater than this range then we refer them to the R file in the GitHub repository to change the grid manually.
+Please not that your climate variable must **be in anomalies** as we use a grid of -3 to +3°C for the model to pick values from. This current version of `SCUBIDO` does not currently have an approach to reconstruct beyond these temperatures using the package functions. If users are reconstructing climate and believe that the values are going to be greater than this range then we refer them to the R file in the GitHub repository to change the grid manually. 
 
 An example of the structure data set is displayed below using a fake data set:
 
