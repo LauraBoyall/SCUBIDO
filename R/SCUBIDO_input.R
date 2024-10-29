@@ -69,7 +69,8 @@ SCUBIDO_input <- function(modern_data, fossil_data) {
 
 # creating our time_grid etc
   time_grid = seq(min(time_m$time_m), max(time_f$time_f), by = 1)
-  time_fm <- sort(c(time_f$time_f, time_m$time_m))
+  #time_fm <- sort(c(time_f$time_f, time_m$time_m))
+  time_fm <- sort(c(time_m$time_m, time_f$time_f))
   time_all <- sort(unique(c(time_fm, time_grid)))
   duplicate_indices <- which(diff(time_all) == 0)
 
