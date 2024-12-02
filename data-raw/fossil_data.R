@@ -5,7 +5,7 @@
 #' @export
 #' @format A data frame with 570 rows and 14 columns:
 #' \describe{
-#'   \item{Age.BP}{Calibrated age in years BP}
+#'   \item{Age.CE}{Years Common Era}
 #'   \item{Al.clr}{Aluminium  (clr-transformed)}
 #'   \item{Si.clr}{Silicon (clr-transformed)}
 #'   \item{K.clr}{Potassium (clr-transformed)}

@@ -35,7 +35,7 @@ library(SCUBIDO)
 
 ## Loading in your data
 
-The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in cal BP**) is in the first column (**from the most recent to oldest**), the climate data is in the second and then the remaining columns are the individual elements. We recommend here that your μXRF-CS data is central-log ratio transformed.
+The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in years CE**) is in the first column (**from the oldest to the youngest**), the climate data is in the second and then the remaining columns are the individual elements. We recommend here that your μXRF-CS data is central-log ratio transformed.
 
 Please not that your climate variable must **be in anomalies** as we use a grid of -3 to +3°C for the model to pick values from. This current version of `SCUBIDO` does not currently have an approach to reconstruct beyond these temperatures using the package functions. If users are reconstructing climate and believe that the values are going to be greater than this range then we refer them to the R file in the GitHub repository to change the grid manually. 
 
@@ -52,8 +52,8 @@ n <- 100
 
 # Create Age BP column (starting from 1990 CE, transformed to Age BP)
 # Age BP = 1950 - Year CE
-age_ce <- seq(1990, 1990 - (n - 1), by = -1)
-age_bp <- 1950 - age_ce
+age_ce <- seq(1890, 1989, by = 1)
+
 
 # Set a baseline temperature (e.g., 15 degrees Celsius) and create random anomalies
 baseline_temp <- 15  # baseline temperature
@@ -72,7 +72,7 @@ Sr <- round(runif(n, min = 0, max = 1000))
 
 # Combine into a data frame
 fake_data <- data.frame(
-  Age_BP = age_bp,
+  Age_CE = age_ce,
   Temperature_Anomaly = temperature_anomalies,
   S = S,
   Si = Si,
@@ -106,7 +106,7 @@ n <- 100
 age_increments <- runif(n, min = 0.1, max = 1)
 
 # Create Age BP column starting from 291 BP, using cumulative sum of the increments
-age_bp <- 291 + cumsum(age_increments)
+age_bp <- 1889 - cumsum(age_increments)
 
 # Create random XRF data (example range for each element, rounded)
 S <- round(runif(n, min = 0, max = 1000))
@@ -183,7 +183,7 @@ The final function in SCUBIDO is `SCUBIDO_reconstruct` and this will produce the
 reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
 ```
 
-```{r reconstruct, message=FALSE,warning=FALSE, echo=TRUE}
+```{r reconstruct, message=FALSE,warning=FALSE, echo=TRUE, fig.width=8, fig.height=6}
 
 reconstruction <- SCUBIDO_reconstruct(calibration_data = calibrated_data, plot_graph = TRUE)
 

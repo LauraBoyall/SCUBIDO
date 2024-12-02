@@ -6,7 +6,7 @@
 #' @name modern_data
 #' @format A data frame with 75 rows and 15 columns:
 #' \describe{
-#'   \item{Age.BP}{Calibrated age in years BP}
+#'   \item{Age.CE}{Common Era Years}
 #'   \item{Temp}{Anomaly temperature data}
 #'   \item{Al.clr}{Al data}
 #'   \item{Si.clr}{Si data}

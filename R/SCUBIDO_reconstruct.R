@@ -40,7 +40,7 @@ SCUBIDO_reconstruct <- function(calibration_data,  plot_graph = FALSE) {
   temp_grid <- seq(-3,3, length = 50)
 
   # Part 1: SCUBIDO_apply functionality
-  MDP_file <- paste0("MDPs_mising", Sys.Date(), ".rds")
+  MDP_file <- paste0("MDPs_", Sys.Date(), ".rds")
 
   cal_run_results <- calibration_data$sims.list
   N_rows_f <- nrow(calibration_data$sorted$xrf_f_resc)
@@ -138,11 +138,11 @@ SCUBIDO_reconstruct <- function(calibration_data,  plot_graph = FALSE) {
   temp_all <- fossil_run$BUGSoutput$sims.list$temp_all
   pick_grid <- which(time_all %in% MDPs$sorted$time_grid)
   temp_grid <- temp_all[, pick_grid]
-  Age_BP = MDPs$sorted$time_grid
+  Age_AD = MDPs$sorted$time_grid
 
   df_final <- data.frame(
-    Age_BP = MDPs$sorted$time_grid,
-    Age_AD =  1950 - MDPs$sorted$time_grid,
+    Age_BP = 1950 - MDPs$sorted$time_grid,
+    Age_AD =   MDPs$sorted$time_grid,
     temp_med = apply(temp_grid, 2, median),
     temp_low_95 = apply(temp_grid, 2, quantile, 0.025),
     temp_high_95 = apply(temp_grid, 2, quantile, 0.975),
@@ -153,14 +153,15 @@ SCUBIDO_reconstruct <- function(calibration_data,  plot_graph = FALSE) {
   )
 
   if (plot_graph) {
-    smot <- 1
-    plot <- ggplot(df_final, aes(x = Age_BP / 1000)) +
-      geom_ribbon(aes(ymin = rollmean(temp_low_95, smot, na.pad = TRUE), ymax = rollmean(temp_high_95, smot, na.pad = TRUE)), alpha = 0.6, fill = 'lightblue') +
-      geom_ribbon(aes(ymin = rollmean(temp_low_50, smot, na.pad = TRUE), ymax = rollmean(temp_high_50, smot, na.pad = TRUE)), alpha = 0.3, fill = 'darkblue') +
-      geom_line(aes(y = rollmean(temp_med, smot, na.pad = TRUE)), linetype = 'solid', size = 0.2) +
-      geom_line(aes(y = rollmean(temp_high_95, smot, na.pad = TRUE)), linetype = 'dashed', size = 0.05) +
-      geom_line(aes(y = rollmean(temp_low_95, smot, na.pad = TRUE)), linetype = 'dashed', size = 0.05) +
-      geom_hline(yintercept = 0) + ggpubr::theme_pubr() +
+    plot <- ggplot(df_final, aes(x = df_final$Age_BP )) +
+      geom_ribbon(aes(ymin = temp_low_95, ymax = temp_high_95), alpha = 0.6, fill = 'lightblue') +
+      geom_ribbon(aes(ymin = temp_low_50, ymax = temp_high_50), alpha = 0.3, fill = 'darkblue') +
+      geom_line(aes(y = temp_med), linetype = 'solid', size = 0.2) +
+      geom_line(aes(y = temp_high_95), linetype = 'dashed', size = 0.05) +
+      geom_line(aes(y = temp_low_95), linetype = 'dashed', size = 0.05) +
+      geom_hline(yintercept = 0) +
+      #scale_y_continuous(limits = c(-1,4), breaks = c(seq(-1, 3, by = .5)))+
+      ggpubr::theme_pubr() +
       labs(
         title = "Palaeoclimate Reconstruction",
         x = "Age (years BP)",

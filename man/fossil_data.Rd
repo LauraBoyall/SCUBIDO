@@ -7,7 +7,7 @@
 \format{
 A data frame with 570 rows and 14 columns:
 \describe{
-\item{Age.BP}{Calibrated age in years BP}
+\item{Age.CE}{Common Era Years}
 \item{Al.clr}{Al data}
 \item{Si.clr}{Si data}
 \item{K.clr}{K data}
