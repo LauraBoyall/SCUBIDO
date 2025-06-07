@@ -22,7 +22,7 @@ The aim of this package is to create a reconstruction of palaeoclimate given mul
 
 It is vital that each of the **3** functions are used for this package otherwise the package will fail. Therefore this vignette walks you each function.
 
-This package depends on having the JAGS (just another gibbs sampler). It is integral that you **download** this software prior to installing `SCUBIDO` otherwise the package will not laod. Use the link here: https://sourceforge.net/projects/mcmc-jags/ 
+This package depends on having the JAGS (just another gibbs sampler). It is integral that you **download** this software prior to installing `SCUBIDO` otherwise the package will not laod. Use the link here: <https://sourceforge.net/projects/mcmc-jags/>
 
 ### Introduction
 
@@ -37,7 +37,7 @@ library(SCUBIDO)
 
 The `SCUBIDO` package requires two datasets, the first being some modern data `modern_data` with the most recent part of the μXRF-CS data which has an overlap with some instrumental climate data. For example it may be a section from 1950 to present. It is important for this data set that the age (**in years CE**) is in the first column (**from the oldest to the youngest**), the climate data is in the second and then the remaining columns are the individual elements. We recommend here that your μXRF-CS data is central-log ratio transformed.
 
-Please not that your climate variable must **be in anomalies** as we use a grid of -3 to +3°C for the model to pick values from. This current version of `SCUBIDO` does not currently have an approach to reconstruct beyond these temperatures using the package functions. If users are reconstructing climate and believe that the values are going to be greater than this range then we refer them to the R file in the GitHub repository to change the grid manually. 
+Please not that your climate variable must **be in anomalies** as we use a grid of -3 to +3°C for the model to pick values from. This current version of `SCUBIDO` does not currently have an approach to reconstruct beyond these temperatures using the package functions. If users are reconstructing climate and believe that the values are going to be greater than this range then we refer them to the R file in the GitHub repository to change the grid manually.
 
 An example of the structure data set is displayed below using a fake data set:
 
@@ -88,8 +88,6 @@ fake_data <- data.frame(
 # Show the first few rows of the data
 print(head(fake_data),row.names = F)
 
-
-
  
 ```
 
@@ -136,6 +134,12 @@ fake_data <- data.frame(
 # Show the first few rows of the data without row numbers
 print(head(fake_data), row.names = FALSE)
 
+```
+
+Alternatively, if you wish to use the pre-loaded data, simply run the following:
+
+```{r, eval = FALSE}
+data(modern_data, fossil_data)
 ```
 
 Once the data is set up we can begin by using the `SCUBIDO` package!
@@ -201,6 +205,6 @@ final <- reconstruction$reconstruction # note that we have saved our reconstruct
 
 And there you have it! By this point you would have been able to reconstruct annual climate given μXRF-CS data! If you have any queries please contact Laura Boyall at Laura.boyall.2016\@live.rhul.ac.uk
 
-You must cite the original publication (Boyall et al., in prep) if you use this package to publish any work. 
+You must cite the original publication (Boyall et al., in prep) if you use this package to publish any work.
 
 ***Happy modelling!!***
